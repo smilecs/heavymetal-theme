@@ -1,141 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{.Site.Title}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Livvic:400,500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-/*! minireset.css v0.0.5 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
-
-      body {
-        font-family: "Livvic", sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-      }
-      .grid-container {
-        min-height: 70vh;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: 1em;
-        grid-row-gap: 3em;
-        padding:1em;
-      }
-      .nav-container{
-        padding: 1em;
-      }
-      .nav-container>div{
-        padding: 1em 0 1.5em;
-        font-size: 1.2em;
-      }
-      .footer-container{
-        padding: 0 .5em;
-      }
-      .footer-container>div{
-         padding: 1.5em 0;
-      }
-      .grid-container > div img {
-        width: 100%;
-        height: 18em;
-      }
-      strong {
-        font-weight: 500;
-      }
-      .product-title {
-        padding-top: 1.3em;
-      }
-      .product-title > div {
-        padding: 0.2em 0;
-      }
-      .product-title-main{
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      .cart-count{
-        font-size: 0.8em;
-      }
-
-      @media(min-width:430px){
-        body{
-          font-size: 16px;
-        }
-        .grid-container{
-          grid-template-columns: repeat(4, 1fr);
-          grid-column-gap: 4em;
-          grid-row-gap: 4em;
-          padding: 5em 10em;
-        }
-        .nav-container{
-          padding: 0 10em;
-        }
-       .nav-container>div{
-          padding: 1.5em 0;
-          font-size: 1.2em;
-        }
-        .grid-container > div img {
-          height: 20em;
-        }
-        .footer-container{
-          padding: 0 10em;
-        }
-        .footer-container>div{
-          padding: 2.5em 0;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <section>
-      <section>
-        <!-- Nav and heading -->
-        <section class="nav-container">
-          <div class="bb b--light-gray cf">
-            <a class="dib pointer link dn-ns pr2">☰</a>
-            <a href="{{ .Site.BaseURL }}" class="dib pointer link black"><strong>{{ .Site.Title }}</strong></a>
-            <div class="fr dib">
-              <strong class="cart-count">Your Cart (0)</strong>
-            </div>
-          </div>
-        </section>
-
-        <section class="grid-container">
-          {{ range where .Site.RegularPages.ByPublishDate.Reverse "Section" "products" }}
-          <div>
-            <div>
-              {{ if not (eq .Params.images nil) }}
-              <a href="{{ .RelPermalink }}">
-                <img src={{ partial "imgsrc.html" (dict "src" (index .Params.images 0).url "width" 200 "height" 250) }} /> 
-              </a>
-              {{ end }}
-            </div>
-            <div class="product-title">
-              <div>
-                <a href="{{ .RelPermalink }}" class="link black pointer "
-                  ><strong class="product-title-main">{{ .Params.title | title}}</strong></a
-                >
-              </div>
-              <div>
-                <span>
-                  {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span>
-              </div>
-            </div>
-          </div>
-          {{end}}
-        </section>
-
-        <footer class="footer-container">
-          <div class="bt b--light-gray">
-            <a href="http://shop440.com" class="link black dib pa3">© Powered by shop440</a>
-          </div>
-        </footer>
-      </section>
+{{define "main"}}
+<section>
+  <section>
+    <!-- Nav and heading -->
+    <section class="nav-container">
+      <div class="bb b--light-gray cf">
+        <a class="dib pointer link dn-ns pr2">☰</a>
+        <a href="{{ .Site.BaseURL }}" class="dib pointer link black"><strong>{{ .Site.Title }}</strong></a>
+        <div class="fr dib">
+          <strong class="cart-count">Your Cart (0)</strong>
+        </div>
+      </div>
     </section>
-  </body>
-</html>
+
+    <section class="grid-container">
+      {{ range where .Site.RegularPages.ByPublishDate.Reverse "Section" "products" }}
+      <div>
+        <div>
+          {{ if not (eq .Params.images nil) }}
+          <a href="{{ .RelPermalink }}">
+            <img src={{ partial "imgsrc.html" (dict "src" (index .Params.images 0).url "width" 200 "height" 250) }} />
+          </a>
+          {{ end }}
+        </div>
+        <div class="product-title">
+          <div>
+            <a href="{{ .RelPermalink }}" class="link black pointer "
+              ><strong class="product-title-main">{{ .Params.title | title}}</strong></a>
+          </div>
+          <div>
+            <span>
+              {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span>
+          </div>
+        </div>
+      </div>
+      {{end}}
+    </section>
+
+    <footer class="footer-container">
+      <div class="bt b--light-gray">
+        <a href="http://shop440.com" class="link black dib pa3">© Powered by shop440</a>
+      </div>
+    </footer>
+  </section>
+</section>
+{{end}}
