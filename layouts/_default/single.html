@@ -61,7 +61,7 @@
         <div class="product-image-lightbox">
           {{ if not (eq .Params.images nil) }}
           <div>
-            <a href={{ (index .Params.images 0).url }} class="link">
+            <a href={{ (index .Params.images 0).url }} class="link db mb1">
             <img
               src={{ partial "imgsrc.html" (dict "src" (index .Params.images 0).url  "width" 400 "height" 500) }}
               alt="product image"
