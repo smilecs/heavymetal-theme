@@ -1,46 +1,29 @@
 {{define "main"}}
-<section>
-  <section>
-    <!-- Nav and heading -->
-    <section class="nav-container">
-      <div class="bb b--light-gray cf">
-        <a class="dib pointer link dn-ns pr2">☰</a>
-        <a href="{{ .Site.BaseURL }}" class="dib pointer link black"><strong>{{ .Site.Title }}</strong></a>
-        <div class="fr dib">
-          <strong class="cart-count">Your Cart (0)</strong>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid-container">
-      {{ range where .Site.RegularPages.ByPublishDate.Reverse "Section" "products" }}
+<section class="grid-container">
+  {{ range where .Site.RegularPages.ByPublishDate "Section" "products" }}
+  <div>
+    <div>
+      {{ if not (eq .Params.images nil) }}
+      <a href="{{ .RelPermalink }}" class="db">
+        <img srcset={{ partial "imgresp.html" (dict "src" (index .Params.images 0).url "width" 200 "height" 250) }} />
+      </a>
+      {{ end }}
+    </div>
+    <div class="product-title">
       <div>
-        <div>
-          {{ if not (eq .Params.images nil) }}
-          <a href="{{ .RelPermalink }}">
-            <img src={{ partial "imgsrc.html" (dict "src" (index .Params.images 0).url "width" 200 "height" 250) }} />
-          </a>
-          {{ end }}
-        </div>
-        <div class="product-title">
-          <div>
-            <a href="{{ .RelPermalink }}" class="link black pointer "
-              ><strong class="product-title-main">{{ .Params.title | title}}</strong></a>
-          </div>
-          <div>
-            <span>
-              {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span>
-          </div>
-        </div>
+        <a
+          href="{{ .RelPermalink }}"
+          class="dib link black pointer product-title-main"
+          ><strong>{{ .Params.title | title}}</strong></a
+        >
       </div>
-      {{end}}
-    </section>
-
-    <footer class="footer-container">
-      <div class="bt b--light-gray">
-        <a href="http://shop440.com" class="link black dib pa3">© Powered by shop440</a>
+      <div>
+        <span>
+          {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2}}
+        </span>
       </div>
-    </footer>
-  </section>
+    </div>
+  </div>
+  {{end}}
 </section>
 {{end}}

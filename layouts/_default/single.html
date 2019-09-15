@@ -1,121 +1,63 @@
 {{define "main"}}
-<style>
-  .grid-container-single {
-    min-height: 80vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-column-gap: 1em;
-    grid-row-gap: 2em;
-    padding:1em;
-  }
-  .single-title {
-    padding-top: 1.3em;
-    font-size: 1.5em;
-  }
-  .single-title > div {
-    padding: 0.2em 0;
-  }
-  .single-title-main{
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .single-image-list{
-    overflow: scroll;
-    white-space: nowrap;
-  }
-  .single-image-list>.single-image-wrapper{
-    width: 20%;
-    display: inline-block;
-  }
-  .add-to-cart{
-    font-size: 0.7em;
-  }
-  .single-description{
-    font-size: 0.7em;
-  }
+<section class="container-single">
 
-  @media(min-width:430px){
-    .grid-container-single{
-      grid-template-columns: 4fr 3fr;
-      grid-column-gap: 4em;
-      grid-row-gap: 4em;
-      padding: 5em 10em;
-    }
-  }
-</style>
-<section>
-  <section>
-    <!-- Nav and heading -->
-    <section class="nav-container">
-      <div class="bb b--light-gray cf">
-        <a class="dib pointer link dn-ns pr2">☰</a>
-        <a href="{{ .Site.BaseURL }}" class="dib pointer link black"><strong>{{ .Site.Title }}</strong></a>
-        <div class="fr dib">
-          <strong class="cart-count">Your Cart (0)</strong>
-        </div>
+  <div class="product-image-lightbox">
+    {{ if not (eq .Params.images nil) }}
+    <div>
+      {{ $img := (index .Params.images 0) }}
+      <a href="{{ $img.url }}" class="link db mb1">
+        <img srcset={{ partial "imgresp.html" (dict "src" $img.url "width" 400 "height" 500) }} alt="product image" 
+                                                                                                style="background-color:{{$img.prominent_color}}; background-image:url({{$img.base64_placeholder}})"
+        id="lightbox-product-main-image" />
+      </a>
+    </div>
+    {{ end }}
+    <div class="single-image-list" id="single-image-list">
+      {{ range .Params.images }}
+      <div class="single-image-wrapper">
+        <a class="pointer">
+          <img class="lightbox-product-image" srcset={{ partial "imgresp.html" (dict "src" .url "width" 200 "height" 250) }} data-srcset={{ partial "imgresp.html" (dict "src" .url "width" 400 "height" 500) }} />
+        </a>
       </div>
-    </section>
+      {{ end }}
+    </div>
+  </div>
 
-    <section class="grid-container-single">
-        <div class="product-image-lightbox">
-          {{ if not (eq .Params.images nil) }}
-          <div>
-            <a href={{ (index .Params.images 0).url }} class="link db mb1">
-            <img
-              src={{ partial "imgsrc.html" (dict "src" (index .Params.images 0).url  "width" 400 "height" 500) }}
-              alt="product image"
-              id="lightbox-product-main-image"
-            />
-            </a>
-          </div>
-          {{ end }}
-          <div class="single-image-list" id="single-image-list">
-            {{ range .Params.images }}
-            <div class="single-image-wrapper">
-              <a class="pointer">
-                <img class="lightbox-product-image" src={{ partial "imgsrc.html" (dict "src" .url "width" 400 "height" 500) }} />
-              </a>
-            </div>
-            {{ end }}
-          </div>
-        </div>
-        <div class="single-title">
-          <div>
-            <a href="{{ .RelPermalink }}" class="link black pointer "
-              ><strong class="single-title-main">{{ .Params.title | title}}</strong></a
-            >
-          </div>
-          <div>
-            <span>
-              {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span>
-          </div>
-          <div class="mt4 single-description">
-            {{ .Params.description }}
-          </div>
-          <div class="mt5">
-            <button class="bw1 bg-white b--navy pv2 ph3 grow add-to-cart pointer">Add to Cart</button>
-          </div>
-        </div>
-    </section>
-    <script>
-      document.addEventListener("DOMContentLoaded", function(event) {
-        var productImagesList = document.getElementsByClassName(
-          "lightbox-product-image"
-        );
-        for (let productImage of productImagesList) {
-          productImage.addEventListener("mouseenter", function(e) {
-            document.getElementById("lightbox-product-main-image").src =
-              e.target.src;
-          });
-        }
-      });
-    </script>
-    <footer class="footer-container">
-      <div class="bt b--light-gray">
-        <a href="http://shop440.com" class="link black dib pa3">© Powered by shop440</a>
-      </div>
-    </footer>
-  </section>
+  <div class="single-title">
+    <div>
+      <a href="{{ .RelPermalink }}" class="link black pointer "
+        ><strong class="single-title-main"
+          >{{ .Params.title | title}}</strong
+        ></a
+      >
+    </div>
+    <div class="mv3">
+      <span class="dib">
+        {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span
+      >
+
+      <button class="ml4 bw1 bg-white b--navy pv2 ph3 grow add-to-cart pointer">
+        Add to Cart
+      </button>
+    </div>
+    <div class="mt4 single-description">
+      {{ .Params.description }}
+    </div>
+  </div>
+
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var productImagesList = document.getElementsByClassName(
+      "lightbox-product-image"
+    );
+    for (let productImage of productImagesList) {
+      productImage.addEventListener("mouseenter", function(e) {
+        document.getElementById("lightbox-product-main-image").srcset =
+          e.target.dataset.srcset;
+      });
+    }
+  });
+</script>
 {{end}}

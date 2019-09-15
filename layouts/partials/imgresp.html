@@ -1,0 +1,12 @@
+{{ $imgB64 := .src | base64Encode }}
+{{ $imgB64 = replace $imgB64 "/" "_" }}
+{{ $imgB64 = replace $imgB64 "+" "-" }}
+{{ $imgB64 = replace $imgB64 "=" "" }}
+
+{{ $imgProxyRoot := "https://imgproxy-vc5s5p7q2q-ew.a.run.app/unsafe/fill/" }}
+
+{{ $imgDefault := (print $imgProxyRoot .width "/" .height "/sm/1/" $imgB64) }}
+{{ $img1point5x := (print $imgProxyRoot (mul .width 1.8) "/" (mul .height 1.8) "/sm/1/" $imgB64) }}
+{{ $img2x := (print $imgProxyRoot (mul .width 2.5) "/" (mul .height 2.5) "/sm/1/" $imgB64) }}
+
+{{ return  ((print $imgDefault " 320w, " $img1point5x " 480w , " $img2x " 800w") | safeHTML) }}
