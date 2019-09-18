@@ -36,7 +36,9 @@
         {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span
       >
 
-      <button class="ml4 bw1 bg-white b--navy pv2 ph3 grow add-to-cart pointer">
+      <button 
+        class="ml4 bw1 bg-white b--navy pv2 ph3 grow add-to-cart pointer"
+        onclick="addProduct({{.Params.shop_id}}, {{.Params.slug}}, 1)" >
         Add to Cart
       </button>
     </div>

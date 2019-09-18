@@ -26,7 +26,9 @@
               ><strong>{{ .Site.Title }}</strong></a
             >
             <div class="fr dib">
-              <strong class="cart-count">Your Cart (0)</strong>
+              <a class="pointer dib" onclick="showCartOverlay()">
+                <strong class="cart-count">Your Cart (0)</strong>
+              </a>
             </div>
           </div>
         </section>
@@ -45,5 +47,35 @@
 
     </section>
 
+    <script
+     src="//merchants.shop440.com/sdk.js" 
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+      window.s440 = new window.shop440site({
+        el: document.getElementById("the_body"),
+        <!-- apiRoot: "http://localhost:8080" -->
+      });
+      function addProduct(shopID, slug, q) {
+        let quantity = parseInt(document.getElementById("cart-item-quantity").value, 10)
+        if (!quantity){
+          quantity = 1
+        }
+        var event = new CustomEvent("s440-add-to-cart", {
+          detail: {
+            slug: slug,
+            shopId: shopID,
+            quantity: quantity
+          }
+        });
+        window.dispatchEvent(event);
+        // };
+      }
+      function showCartOverlay(e) {
+        window.dispatchEvent(new CustomEvent("s440-showOverlay"));
+      }
+    </script>
   </body>
 </html>
