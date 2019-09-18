@@ -47,6 +47,8 @@
 
     </section>
 
+    <!-- Shop440 SDK init -->
+    <section id="sdk-body"></section>
     <script
      src="//merchants.shop440.com/sdk.js" 
       type="text/javascript"
@@ -55,14 +57,11 @@
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
       window.s440 = new window.shop440site({
-        el: document.getElementById("the_body"),
+        el: document.getElementById("sdk-body"),
         <!-- apiRoot: "http://localhost:8080" -->
       });
       function addProduct(shopID, slug, q) {
-        let quantity = parseInt(document.getElementById("cart-item-quantity").value, 10)
-        if (!quantity){
-          quantity = 1
-        }
+        var  quantity = 1
         var event = new CustomEvent("s440-add-to-cart", {
           detail: {
             slug: slug,
@@ -77,5 +76,7 @@
         window.dispatchEvent(new CustomEvent("s440-showOverlay"));
       }
     </script>
+    <!-- end Shop440 SDK init -->
+
   </body>
 </html>
