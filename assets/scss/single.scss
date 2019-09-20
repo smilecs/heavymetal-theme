@@ -1,44 +1,45 @@
-  .container-single {
-    min-height: 80vh;
-    display: grid;
-    grid-template-columns: minmax(0,1fr);
-    grid-column-gap: 1em;
-    grid-row-gap: 2em;
-    padding:1em;
-  }
-  .single-title {
-    padding-top: 1.3em;
-    font-size: 1.5em;
-  }
-  .single-title > div {
-    padding: 0.2em 0;
-  }
-  .single-title-main{
-    display: inline-block;
-    overflow: hidden;
-    line-height: 1.4em;
-  }
-  .single-image-list{
-    overflow: scroll;
-    white-space: nowrap;
-  }
-  .single-image-list>.single-image-wrapper{
-    width: 20%;
-    display: inline-block;
-  }
-  .add-to-cart{
-    font-size: 0.7em;
-  }
-  .single-description{
-    font-size: 0.7em;
-    line-height: 1.5em;
-  }
+@import "mixins";
 
-  @media(min-width:430px){
-    .container-single{
-      grid-template-columns: minmax(0,4fr) minmax(0,3fr);
-      grid-column-gap: 4em;
-      grid-row-gap: 4em;
-      padding: 5em 10em;
-    }
+.container-single {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 2em;
+  padding: 1em;
+  @include for-tablet-landscape-up {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
   }
+  @include for-desktop-up {
+    grid-column-gap: 4em;
+    grid-row-gap: 4em;
+    padding: 5em 10em;
+  }
+}
+.single-title {
+  padding-top: 1.3em;
+  font-size: 1.5em;
+}
+.single-title > div {
+  padding: 0.2em 0;
+}
+.single-title-main {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.4em;
+}
+.single-image-list {
+  overflow: scroll;
+  white-space: nowrap;
+}
+.single-image-list > .single-image-wrapper {
+  width: 20%;
+  display: inline-block;
+}
+.add-to-cart {
+  font-size: 0.7em;
+}
+.single-description {
+  font-size: 0.7em;
+  line-height: 1.5em;
+}

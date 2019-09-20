@@ -1,156 +1,74 @@
 @import "single";
 @import "minireset";
+@import "list";
 
- //  External Library Includes 
- // @import 'scss/normalize';
+//  External Library Includes
+// @import 'scss/normalize';
 
+//  Variables
+//  Importing here will allow you to override any variables in the modules
 
-//  Variables 
-//  Importing here will allow you to override any variables in the modules 
+@import "tachyons-sass/scss/variables";
 
-@import 'tachyons-sass/scss/variables';
-
-//  Debugging 
+//  Debugging
 // @import 'tachyons-sass/scss/debug-children';
 // @import 'tachyons-sass/scss/debug-grid';
 
-//  Uncomment out the line below to help debug layout issues 
-//  @import 'scss/debug'; 
+//  Uncomment out the line below to help debug layout issues
+//  @import 'scss/debug';
 
- //  Modules 
- // @import 'tachyons-sass/scss/box-sizing';
- // @import 'tachyons-sass/scss/aspect-ratios';
- // @import 'tachyons-sass/scss/images';
- // @import 'tachyons-sass/scss/background-size';
- // @import 'tachyons-sass/scss/background-position';
- // @import 'tachyons-sass/scss/outlines';
- @import 'tachyons-sass/scss/borders';
- @import 'tachyons-sass/scss/border-colors';
- // @import 'tachyons-sass/scss/border-radius';
- // @import 'tachyons-sass/scss/border-style';
- @import 'tachyons-sass/scss/border-widths';
- // @import 'tachyons-sass/scss/box-shadow';
- // @import 'tachyons-sass/scss/code';
- // @import 'tachyons-sass/scss/coordinates';
- // @import 'tachyons-sass/scss/clears';
- // @import 'tachyons-sass/scss/flexbox';
- @import 'tachyons-sass/scss/display';
- @import 'tachyons-sass/scss/floats';
- // @import 'tachyons-sass/scss/font-family';
- // @import 'tachyons-sass/scss/font-style';
- // @import 'tachyons-sass/scss/font-weight';
- // @import 'tachyons-sass/scss/forms';
- // @import 'tachyons-sass/scss/heights';
- // @import 'tachyons-sass/scss/letter-spacing';
- // @import 'tachyons-sass/scss/line-height';
- @import 'tachyons-sass/scss/links';
- // @import 'tachyons-sass/scss/lists';
- // @import 'tachyons-sass/scss/max-widths';
- // @import 'tachyons-sass/scss/widths';
- // @import 'tachyons-sass/scss/overflow';
- // @import 'tachyons-sass/scss/position';
- // @import 'tachyons-sass/scss/opacity';
- // @import 'tachyons-sass/scss/rotations';
- @import 'tachyons-sass/scss/skins';
- // @import 'tachyons-sass/scss/skins-pseudo';
- @import 'tachyons-sass/scss/spacing';
- // @import 'tachyons-sass/scss/negative-margins';
- // @import 'tachyons-sass/scss/tables';
- // @import 'tachyons-sass/scss/text-decoration';
- // @import 'tachyons-sass/scss/text-align';
- // @import 'tachyons-sass/scss/text-transform';
- // @import 'tachyons-sass/scss/type-scale';
- // @import 'tachyons-sass/scss/typography';
- // @import 'tachyons-sass/scss/utilities';
- // @import 'tachyons-sass/scss/visibility';
- // @import 'tachyons-sass/scss/white-space';
- // @import 'tachyons-sass/scss/vertical-align';
- // @import 'tachyons-sass/scss/hovers';
- // @import 'tachyons-sass/scss/z-index';
- // @import 'tachyons-sass/scss/nested';
- // @import 'tachyons-sass/scss/styles';
+//  Modules
+// @import 'tachyons-sass/scss/box-sizing';
+// @import 'tachyons-sass/scss/aspect-ratios';
+// @import 'tachyons-sass/scss/images';
+// @import 'tachyons-sass/scss/background-size';
+// @import 'tachyons-sass/scss/background-position';
+// @import 'tachyons-sass/scss/outlines';
+@import "tachyons-sass/scss/borders";
+@import "tachyons-sass/scss/border-colors";
+// @import 'tachyons-sass/scss/border-radius';
+// @import 'tachyons-sass/scss/border-style';
+@import "tachyons-sass/scss/border-widths";
+// @import 'tachyons-sass/scss/box-shadow';
+// @import 'tachyons-sass/scss/code';
+// @import 'tachyons-sass/scss/coordinates';
+// @import 'tachyons-sass/scss/clears';
+// @import 'tachyons-sass/scss/flexbox';
+@import "tachyons-sass/scss/display";
+@import "tachyons-sass/scss/floats";
+// @import 'tachyons-sass/scss/font-family';
+// @import 'tachyons-sass/scss/font-style';
+// @import 'tachyons-sass/scss/font-weight';
+// @import 'tachyons-sass/scss/forms';
+// @import 'tachyons-sass/scss/heights';
+// @import 'tachyons-sass/scss/letter-spacing';
+// @import 'tachyons-sass/scss/line-height';
+@import "tachyons-sass/scss/links";
+// @import 'tachyons-sass/scss/lists';
+// @import 'tachyons-sass/scss/max-widths';
+// @import 'tachyons-sass/scss/widths';
+// @import 'tachyons-sass/scss/overflow';
+// @import 'tachyons-sass/scss/position';
+// @import 'tachyons-sass/scss/opacity';
+// @import 'tachyons-sass/scss/rotations';
+@import "tachyons-sass/scss/skins";
+// @import 'tachyons-sass/scss/skins-pseudo';
+@import "tachyons-sass/scss/spacing";
+// @import 'tachyons-sass/scss/negative-margins';
+// @import 'tachyons-sass/scss/tables';
+// @import 'tachyons-sass/scss/text-decoration';
+// @import 'tachyons-sass/scss/text-align';
+// @import 'tachyons-sass/scss/text-transform';
+// @import 'tachyons-sass/scss/type-scale';
+// @import 'tachyons-sass/scss/typography';
+// @import 'tachyons-sass/scss/utilities';
+// @import 'tachyons-sass/scss/visibility';
+// @import 'tachyons-sass/scss/white-space';
+// @import 'tachyons-sass/scss/vertical-align';
+// @import 'tachyons-sass/scss/hovers';
+// @import 'tachyons-sass/scss/z-index';
+// @import 'tachyons-sass/scss/nested';
+// @import 'tachyons-sass/scss/styles';
+//
 
-body {
-  font-family: "Livvic", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-}
-.grid-container {
-  min-height: 80vh;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-column-gap: 1em;
-  grid-row-gap: 3em;
-  padding: 1em;
-  width: 100%;
-}
 
-.product-image-lightbox img {
-  width: 100%;
-}
-
-.nav-container {
-  padding: 1em;
-}
-.nav-container > div {
-  padding: 1em 0 1.5em;
-  font-size: 1.2em;
-}
-.footer-container {
-  padding: 0 0.5em;
-}
-.footer-container > div {
-  padding: 1.5em 0;
-}
-.grid-container > div img {
-  width: 100%;
-  // height: 18em;
-}
-strong {
-  font-weight: 500;
-}
-.product-title {
-  padding-top: 1.3em;
-}
-.product-title > div {
-  padding: 0.2em 0;
-}
-.product-title-main {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  word-wrap: break-word;
-  word-break: break-all;
-  max-width: 100%;
-}
-.cart-count {
-  font-size: 0.8em;
-}
-
-@media (min-width: 430px) {
-  body {
-    font-size: 16px;
-  }
-  .grid-container {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-column-gap: 4em;
-    grid-row-gap: 4em;
-    padding: 5em 10em;
-  }
-  .nav-container {
-    padding: 0 10em;
-  }
-  .nav-container > div {
-    padding: 1.5em 0;
-    font-size: 1.2em;
-  }
-  .grid-container > div img {
-    // height: 20em;
-  }
-  .footer-container {
-    padding: 0 10em;
-  }
-  .footer-container > div {
-    padding: 2.5em 0;
-  }
-}

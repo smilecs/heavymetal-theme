@@ -1,0 +1,101 @@
+@import "mixins";
+
+body {
+  font-family: "Livvic", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  @include for-tablet-portrait-up {
+    font-size: 16px;
+  }
+}
+.grid-container {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-column-gap: 1em;
+  grid-row-gap: 3em;
+  padding: 1em;
+  width: 100%;
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @include for-desktop-up {
+    grid-column-gap: 4em;
+    grid-row-gap: 4em;
+    padding: 5em 10em;
+  }
+}
+
+.product-image-container {
+  a {
+    padding-bottom: 125%;
+    background: #eee;
+    height: 0;
+    position: relative;
+    background-size: cover;
+  }
+  img {
+    width: 100%;
+    // height: 18em;
+    height: 100%;
+    display: block;
+    position: absolute;
+    object-fit: cover;
+  }
+}
+
+.nav-container {
+  padding: 1em;
+  @include for-desktop-up {
+    padding: 0 10em;
+  }
+
+  & > div {
+    padding: 1em 0 1.5em;
+    font-size: 1.2em;
+    @include for-tablet-portrait-up {
+      padding: 1.5em 0;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.product-image-lightbox img {
+  width: 100%;
+}
+
+.footer-container {
+  padding: 0 0.5em;
+
+  & > div {
+    padding: 1.5em 0;
+    @include for-tablet-portrait-up {
+      padding: 2.5em 0;
+    }
+  }
+  @include for-tablet-portrait-up {
+    padding: 0 10em;
+  }
+}
+
+strong {
+  font-weight: 500;
+}
+.product-title {
+  padding-top: 1.3em;
+}
+.product-title > div {
+  padding: 0.2em 0;
+}
+.product-title-main {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  max-width: 100%;
+}
+.cart-count {
+  font-size: 0.8em;
+}

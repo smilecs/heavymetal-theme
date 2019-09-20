@@ -3,12 +3,11 @@
 
   <div class="product-image-lightbox">
     {{ if not (eq .Params.images nil) }}
-    <div>
+    <div class="product-image-container">
       {{ $img := (index .Params.images 0) }}
-      <a href="{{ $img.url }}" class="link db mb1">
-        <img srcset={{ partial "imgresp.html" (dict "src" $img.url "width" 400 "height" 500) }} alt="product image" 
-                                                                                                style="background-color:{{$img.prominent_color}}; background-image:url({{$img.base64_placeholder}})"
-        id="lightbox-product-main-image" />
+      {{ $imgStyle := (printf "background-color:%s; background-image:url(%s)" $img.prominent_color $img.base64_placeholder) }}
+      <a href="{{ $img.url }}" class="link db mb1"  {{ printf "style=%q" $imgStyle |safeHTMLAttr}} >
+        <img srcset={{ partial "imgresp.html" (dict "src" $img.url "width" 400 "height" 500) }} alt="product image" id="lightbox-product-main-image" />
       </a>
     </div>
     {{ end }}

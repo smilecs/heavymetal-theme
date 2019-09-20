@@ -2,13 +2,17 @@
 <section class="grid-container">
   {{ range where .Site.RegularPages.ByPublishDate "Section" "products" }}
   <div>
-    <div>
-      {{ if not (eq .Params.images nil) }}
-      <a href="{{ .RelPermalink }}" class="db">
-        <img srcset={{ partial "imgresp.html" (dict "src" (index .Params.images 0).url "width" 200 "height" 250) }} />
+    {{ if not (eq .Params.images nil) }}
+    {{ $img := (index .Params.images 0) }}
+    {{ $imgStyle := (printf "background-color:%s; background-image:url(%s)" $img.prominent_color $img.base64_placeholder) }}
+
+    <div class="product-image-container" >
+      <a href="{{ .RelPermalink }}" class="db"
+                                  {{ printf "style=%q" $imgStyle |safeHTMLAttr}} >
+        <img srcset={{ partial "imgresp.html" (dict "src" $img.url "width" 200 "height" 250) }} />
       </a>
-      {{ end }}
     </div>
+    {{ end }}
     <div class="product-title">
       <div>
         <a
