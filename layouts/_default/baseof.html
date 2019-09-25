@@ -27,7 +27,7 @@
             >
             <div class="fr dib">
               <a class="pointer dib" onclick="showCartOverlay()">
-                <strong class="cart-count">Your Cart (0)</strong>
+                <strong class="cart-count">Your Cart (<span id="cart-count">0</span>)</strong>
               </a>
             </div>
           </div>
@@ -54,10 +54,21 @@
       type="text/javascript"
       charset="utf-8"
     ></script>
+
+    <!-- <script -->
+    <!--  src="//localhost:8000/sdk.js" --> 
+    <!--   type="text/javascript" -->
+    <!--   charset="utf-8" -->
+    <!-- ></script> -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
+      function onCartCountChange(cartCount){
+          document.getElementById("cart-count").innerHTML = cartCount
+      }
+
       window.s440 = new window.shop440site({
         el: document.getElementById("sdk-body"),
+        onCartCountChange: onCartCountChange, 
         <!-- apiRoot: "http://localhost:8080" -->
       });
       function addProduct(shopID, slug, q) {
@@ -70,8 +81,8 @@
           }
         });
         window.dispatchEvent(event);
-        // };
       }
+
       function showCartOverlay(e) {
         window.dispatchEvent(new CustomEvent("s440-showOverlay"));
       }
