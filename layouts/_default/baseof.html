@@ -50,13 +50,20 @@
     <!-- Shop440 SDK init -->
     <section id="sdk-body"></section>
     <script
-     src="//merchants.shop440.com/sdk.js" 
+     src="//merchants.shop440.com/sdk.js"
       type="text/javascript"
       charset="utf-8"
     ></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
+    <script src="https://unpkg.com/quicklink@1.0.1/dist/quicklink.umd.js" type="text/javascript" ></script>
+    <script>
+    window.addEventListener('load', () =>{
+        quicklink()
+    });
+    </script>
 
     <!-- <script -->
-    <!--  src="//localhost:8000/sdk.js" --> 
+    <!--  src="//localhost:8000/sdk.js" -->
     <!--   type="text/javascript" -->
     <!--   charset="utf-8" -->
     <!-- ></script> -->
@@ -68,7 +75,7 @@
 
       window.s440 = new window.shop440site({
         el: document.getElementById("sdk-body"),
-        onCartCountChange: onCartCountChange, 
+        onCartCountChange: onCartCountChange,
         <!-- apiRoot: "http://localhost:8080" -->
       });
       function addProduct(shopID, slug, q) {
