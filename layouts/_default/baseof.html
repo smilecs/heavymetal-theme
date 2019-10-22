@@ -4,6 +4,10 @@
     <title>{{.Site.Title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
+    <meta property="og:title" content="{{ .Site.Title }}"/>
+    <meta property="og:image" content="{{ .Site.Params.logo_url }}" />
+    <meta property="og:url" content="{{ .Site.BaseURL }}" />
+    <meta property="og:description" content="{{ .Site.Params.description }}" />
     <link
       href="https://fonts.googleapis.com/css?family=Livvic:400,500&display=swap"
       rel="stylesheet"
@@ -37,7 +41,7 @@
 
         <footer class="footer-container">
           <div class="bt b--light-gray">
-            <a href="http://shop440.com" class="link black dib pa3"
+            <a href="https://shop440.com" class="link black dib pa3"
               >© Powered by shop440</a
             >
           </div>
