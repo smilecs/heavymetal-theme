@@ -1,3 +1,11 @@
+{{ define "head" }}
+
+<meta property="og:title" content="{{ .Params.title | title }}" />
+<meta property="og:image" content="{{ (index .Params.images 0).url }}" />
+<meta property="og:description" content="{{ .Params.description }}" />
+
+{{ end }}
+
 {{define "main"}}
 <section class="container-single">
 
@@ -6,8 +14,9 @@
     <div class="product-image-container">
       {{ $img := (index .Params.images 0) }}
       {{ $imgStyle := (printf "background-color:%s; background-image:url(%s)" $img.prominent_color $img.base64_placeholder) }}
-      <a href="{{ $img.url }}" class="link db mb1"  {{ printf "style=%q" $imgStyle |safeHTMLAttr}} >
-        <img srcset={{ partial "imgresp.html" (dict "src" $img.url "width" 400 "height" 500) }} alt="product image" id="lightbox-product-main-image" />
+      <a href="{{ $img.url }}" class="link db mb1" {{ printf "style=%q" $imgStyle |safeHTMLAttr}}>
+        <img srcset={{ partial "imgresp.html" (dict "src" $img.url "width" 400 "height" 500) }} alt="product image"
+          id="lightbox-product-main-image" />
       </a>
     </div>
     {{ end }}
@@ -15,7 +24,9 @@
       {{ range .Params.images }}
       <div class="single-image-wrapper">
         <a class="pointer">
-          <img class="lightbox-product-image" srcset={{ partial "imgresp.html" (dict "src" .url "width" 200 "height" 250) }} data-srcset={{ partial "imgresp.html" (dict "src" .url "width" 400 "height" 500) }} />
+          <img class="lightbox-product-image"
+            srcset={{ partial "imgresp.html" (dict "src" .url "width" 200 "height" 250) }}
+            data-srcset={{ partial "imgresp.html" (dict "src" .url "width" 400 "height" 500) }} />
         </a>
       </div>
       {{ end }}
@@ -24,20 +35,15 @@
 
   <div class="single-title">
     <div>
-      <a href="{{ .RelPermalink }}" class="link black pointer "
-        ><strong class="single-title-main"
-          >{{ .Params.title | title}}</strong
-        ></a
-      >
+      <a href="{{ .RelPermalink }}" class="link black pointer "><strong
+          class="single-title-main">{{ .Params.title | title}}</strong></a>
     </div>
     <div class="mv3">
       <span class="dib">
-        {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span
-      >
+        {{ htmlUnescape "&#8358;" }}{{ int .Params.price |lang.NumFmt 2 }}</span>
 
-      <button 
-        class="ml4 bw1 bg-white b--navy pv2 ph3 grow add-to-cart pointer"
-        onclick="addProduct({{.Params.shop_id}}, {{.Params.slug}}, 1)" >
+      <button class="ml4 bw1 bg-white b--navy pv2 ph3 grow add-to-cart pointer"
+        onclick="addProduct({{.Params.shop_id}}, {{.Params.slug}}, 1)">
         Add to Cart
       </button>
     </div>
@@ -49,12 +55,12 @@
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
+  document.addEventListener("DOMContentLoaded", function (event) {
     var productImagesList = document.getElementsByClassName(
       "lightbox-product-image"
     );
     for (let productImage of productImagesList) {
-      productImage.addEventListener("mouseenter", function(e) {
+      productImage.addEventListener("mouseenter", function (e) {
         document.getElementById("lightbox-product-main-image").srcset =
           e.target.dataset.srcset;
       });
