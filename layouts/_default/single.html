@@ -1,10 +1,16 @@
 {{ define "head" }}
 
-<meta property="og:title" content="{{ .Params.title | title }}" />
+<meta property="og:title" content="{{ .Params.title | title | truncate 34 }}" />
+
+<meta name="description" content="{{ .Params.title | title | truncate 34 }}" />
 {{ if not (eq .Params.images nil) }}
 <meta property="og:image" content="{{ (index .Params.images 0).url }}" />
 {{ end }}
-<meta property="og:description" content="{{ .Params.description }}" />
+<meta property="og:description" content="{{ .Params.description | truncate 64 }}" />
+
+<meta property="og:url" content="{{ .Params.url }}" />
+
+<meta property="og:type" content="article" /> 
 
 {{ end }}
 
